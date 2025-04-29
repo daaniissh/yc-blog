@@ -1,4 +1,4 @@
-# ![YC Directory Logo](public/logo.png) YC Directory
+# ![YC Directory Logo](public/logo.png)
 
 > 🚧 **Project Status: In Development**  
 > YC Directory is a modern blog platform – built to publish, explore, and share posts with a clean interface and streamlined UX.
