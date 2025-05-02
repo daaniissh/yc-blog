@@ -21,6 +21,7 @@
 - **Styling**: Tailwind CSS v4
 - **Authentication**: GitHub OAuth via NextAuth.js
 - **Type Safety**: TypeScript
+- **Validation**: zod
 
 ## 🚀 Getting Started
 
