@@ -2,6 +2,7 @@ import StartupCard, { StartupCardType } from "@/components/StartupCard";
 import SearchForm from "../../components/SearchForm";
 import { STARTUPS_QUERY } from "@/sanity/lib/queries";
 import { sanityFetch, SanityLive } from "@/sanity/lib/live";
+import { auth } from "@/auth";
 
 // app/page.tsx
 export default async function Home({ searchParams }: { searchParams: Promise<{ query?: string }> }) {
@@ -71,7 +72,8 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ q
   //     title: "The Fall of Titans",
   //   },
   // ];
-  
+  const session = await auth()
+  console.log(session,"session id")
   
   return < >
     <section className="pink_container" >

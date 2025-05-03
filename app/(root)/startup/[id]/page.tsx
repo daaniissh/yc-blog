@@ -10,14 +10,15 @@ import React, { Suspense } from 'react'
 import MarkdownIt from 'markdown-it'
 import { Skeleton } from '@/components/ui/skeleton'
 import View from '@/components/View'
-import { Metadata } from 'next'
+// import { Metadata } from 'next'
+
 
 
 
 const md = MarkdownIt()
 
 export const experimental_ppr = true
-export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: { id: string } }){
   const { id } = params;
   const post = await client.fetch(STARTUP_BY_ID_QUERY, { id });
 
@@ -58,6 +59,7 @@ const page = async ({ params }: { params: { id: string } }) => {
             <p className='category-tag' >{post.category}</p>
           </div>
           <h3 className='text-30-bold' >Pitch Details</h3>
+
           {parsedContent ? (
             <article
               className='prose max-w-4xl font-work-sans break-all'
@@ -65,6 +67,7 @@ const page = async ({ params }: { params: { id: string } }) => {
             />
           ) : (
             <p className='no-result' >no result</p>
+             
           )}
         </div>
         <hr className='divider' />
