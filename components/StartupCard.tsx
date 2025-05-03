@@ -1,15 +1,16 @@
-import { formatData } from '@/lib/utils'
+import { cn, formatData } from '@/lib/utils'
 import { EyeIcon } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 import { Button } from './ui/button'
 import { Author, Startup } from '@/sanity/types'
+import { Skeleton } from './ui/skeleton'
 
 export type StartupCardType = Omit<Startup, "author"> & { author?: Author }
 
 const StartupCard = ({ post }: { post: StartupCardType }) => {
-  console.log(post)
+  // console.log(post)
   
   return (
     <li className='startup-card group' >
@@ -29,7 +30,7 @@ const StartupCard = ({ post }: { post: StartupCardType }) => {
             <h3 className='text-26-semibold line-clamp-1' >{post.title}</h3></Link>
         </div>
         <Link href={`/user/${post.author?._id}`} >
-          <Image src={post.author?.image as string} alt='' width={48} height={48} className='rounded-full' />
+          <img src={post.author?.image} alt='' width={48} height={48} className='rounded-full' />
         </Link>
       </div>
       <Link href={`/startup/${post._id}`} >
@@ -52,5 +53,14 @@ const StartupCard = ({ post }: { post: StartupCardType }) => {
     </li>
   )
 }
+export const StartupCardSkeleton = () => (
+  <>
+    {[0, 1, 2, 3, 4].map((index: number) => (
+      <li key={cn("skeleton", index)}>
+        <Skeleton className="startup-card_skeleton" />
+      </li>
+    ))}
+  </>
+);
 
 export default StartupCard
