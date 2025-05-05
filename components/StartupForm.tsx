@@ -52,7 +52,7 @@ const StartupForm = () => {
         });
 
         return { 
-          //@ts-ignore
+     // @ts-expect-error
           ...prevState, error: "Validation failed", status: "ERROR" };
       }
       toast("A unexpected error has occurred", {
@@ -61,7 +61,7 @@ const StartupForm = () => {
         description: "Please check your inputs and try again",
       });
       return {
-        //@ts-ignore
+     // @ts-expect-error
         ...prevState,
         error: "A unexpected error has occurred",
         status: "ERROR"

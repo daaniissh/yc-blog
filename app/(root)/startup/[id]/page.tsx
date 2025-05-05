@@ -45,6 +45,7 @@ const page = async ({ params }: { params: { id: string } }) => {
         <p className='sub-heading !max-w-5xl' >{post.description}</p>
       </section>
       <section className='section_container' >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={post.image} alt="image" className='w-full h-auto rounded-xl' />
         <div className="space-y-5 mt-10 max-w-4xl mx-auto">
           <div className="flex-between gap-5">
