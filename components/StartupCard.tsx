@@ -1,6 +1,5 @@
 import { cn, formatData } from '@/lib/utils'
 import { EyeIcon } from 'lucide-react'
-import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 import { Button } from './ui/button'
@@ -11,7 +10,7 @@ export type StartupCardType = Omit<Startup, "author"> & { author?: Author }
 
 const StartupCard = ({ post }: { post: StartupCardType }) => {
   // console.log(post)
-  
+
   return (
     <li className='startup-card group' >
       <div className="flex-between">
@@ -30,6 +29,7 @@ const StartupCard = ({ post }: { post: StartupCardType }) => {
             <h3 className='text-26-semibold line-clamp-1' >{post.title}</h3></Link>
         </div>
         <Link href={`/user/${post.author?._id}`} >
+    {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={post.author?.image} alt='' width={48} height={48} className='rounded-full' />
         </Link>
       </div>
@@ -37,6 +37,7 @@ const StartupCard = ({ post }: { post: StartupCardType }) => {
         <p className="startup-card_desc">
           {post.description}
         </p>
+    {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={post.image} alt="startup image" className='startup-card_img' />
       </Link>
       <div className='flex-between gap-3 mt-5' >
@@ -55,11 +56,12 @@ const StartupCard = ({ post }: { post: StartupCardType }) => {
 }
 export const StartupCardSkeleton = () => (
   <>
-    {[0, 1, 2, 3, 4].map((index: number) => (
+    {Array.from({ length: 5 }).map((_, index) => (
       <li key={cn("skeleton", index)}>
         <Skeleton className="startup-card_skeleton" />
       </li>
     ))}
+
   </>
 );
 

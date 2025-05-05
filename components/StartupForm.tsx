@@ -16,7 +16,7 @@ const StartupForm = () => {
   const [pitch, setPitch] = useState("");
   const router = useRouter()
 
-  const handleFormSubmit = async (prevState: any, formData: FormData) => {
+  const handleFormSubmit = async (prevState: unknown, formData: FormData) => {
     try {
       const formValues = {
         title: formData.get("title") as string,
@@ -27,7 +27,7 @@ const StartupForm = () => {
       };
       await formSchema.parseAsync(formValues);
       console.log(formValues)
-      const result = await createPitch(prevState, formData, pitch);
+      const result = await createPitch( formData, pitch);
 
       if (result.status === "SUCCESS") {
         toast("Success", {
@@ -51,7 +51,9 @@ const StartupForm = () => {
           description: "Please check your inputs and try again",
         });
 
-        return { ...prevState, error: "Validation failed", status: "ERROR" };
+        return { 
+          //@ts-ignore
+          ...prevState, error: "Validation failed", status: "ERROR" };
       }
       toast("A unexpected error has occurred", {
         className: "!bg-red-700 !text-white",                // main toast
@@ -59,6 +61,7 @@ const StartupForm = () => {
         description: "Please check your inputs and try again",
       });
       return {
+        //@ts-ignore
         ...prevState,
         error: "A unexpected error has occurred",
         status: "ERROR"
@@ -68,7 +71,7 @@ const StartupForm = () => {
 
     }
   }
-  const [state, formAction, isPending] = useActionState(handleFormSubmit, {
+  const [_, formAction, isPending] = useActionState(handleFormSubmit, {
     error: '', status: "INITIAL"
   }
   )
